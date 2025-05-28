@@ -1,93 +1,116 @@
-
-.write{
-    background-color: #a5a7a6;
+.write {
+    background-color: #2c2c2e;
     width: 60%;
     margin-left: 15%;
     padding-left: 5%;
-    padding-right: 5%; 
+    padding-right: 5%;
     margin-right: 15%;
     margin-top: 5%;
-    color: rgb(103, 96, 96);
+    color: #ffffff;
     font-size: 40px;
     padding-top: 5%;
     padding-bottom: 5%;
     border-radius: 10px;
     white-space: nowrap;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 
 }
 
-
-body{
-    background-color: #D1E0D7;
+body {
+    background-color: #2b2b2b;
     margin: 0;
     padding: 0;
-    font-family: 'Merriweather', serif;
-    
+    font-family: 'Bebas Neue';
+    letter-spacing: 1px;
+
+
 }
-.copy{
-    background-color: #a5a7a6;
+
+.copy {
+    background-color: #2c2c2e;
     width: 60%;
     margin-left: 15%;
     padding-left: 5%;
-    padding-right: 5%; 
+    padding-right: 5%;
     margin-right: 15%;
     margin-top: 5%;
-    color: rgb(103, 96, 96);
+    color: #ffffff;
     font-size: 40px;
     padding-top: 5%;
     padding-bottom: 5%;
     border-radius: 10px;
-
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
-.setting{
 
+.setting {
     display: flex;
     margin-top: 5%;
-    background-color: #2E2E2E;
+    background-color: #2c2c2e;
     margin: auto;
     margin-top: 3%;
     padding: none;
-    width:60%;
     border-radius: 10px;
-    color: #D1E0D7;
-    justify-content: center;
-    font-weight: 700;
+    color: #4fc3f7;
+    font-weight: 200;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    text-shadow: 0 3px 20px rgba(79, 195, 247, 0.4);
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    position: relative;
 }
-header{
+
+header {
     display: flex;
     margin: none;
     padding: none;
-    background-color: aliceblue;
-    color: #2E2E2E;
+    background-color: #2c2c2e;
+    color: #ffffff;
     font-weight: 700;
+    border-radius: 10px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+
 }
-.logo{
+
+.logo {
     display: flex;
     margin: 10px;
-    width: 50px;
+    width: 100px;
     height: 100px;
-    
+    padding: none;
+
 }
-.title{
+
+.title {
     display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 30px;
-    text-align: center;
-    padding-left: 150px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
 }
-.time{
+
+.time {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    padding-left: 400px;
+    padding-left: 1150px;
 }
-.restart{
+
+.restart {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
     padding-left: 10px;
 
+}
+
+.punc,
+.times,
+.numbers {
+   flex: 1;
+   text-align: center;
 }

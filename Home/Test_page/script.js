@@ -69,12 +69,53 @@ console.log(words)
 function isOverflowing(element) {
     return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
   }
-const element = document.querySelector(".write")
-let writing=element.textContent
 
 
-console.log(writing)
-while (!isOverflowing(element)){
-    writing+="W"
-    element.textContent=writing
+const element1 = document.querySelector(".one")
+let writing1=element1.textContent
+const element2 = document.querySelector(".two")
+let writing2=element2.textContent
+const element3 = document.querySelector(".three")
+let writing3=element3.textContent
+const element4 = document.querySelector(".four")
+let writing4=element4.textContent
+const element5 = document.querySelector(".five")
+let writing5=element5.textContent
+function generate(element,writing){
+    //isOverflowing function is AI
+    while (!isOverflowing(element)){
+        place=Math.floor(Math.random() * words.length) + 1
+        //console.log(words[place])
+        writing+=words[place]
+        a=words[place].length
+        writing+=" "
+        element.textContent=writing
+    }
+    element.textContent=writing.substring(0,writing.length-2-a)
 }
+
+generate(element1,writing1)
+generate(element2,writing2)
+generate(element3,writing3)
+generate(element4,writing4)
+generate(element5,writing5)
+let cur=0
+turn=0
+setInterval(function() {
+    writing1=element1.textContent
+    //console.log(writing1)
+    if (turn==0){
+        element1.innerHTML = `<span style="color:#4fc3f7">${writing1[cur]}</span>${writing1.slice(cur+1)}`;
+        turn=1
+    }else{
+        element1.innerHTML = `<span style="color:white">${writing1[cur]}</span>${writing1.slice(cur+1)}`;
+        turn=0
+
+    }
+    //4fc3f7
+    
+  }, 500);
+document.addEventListener('keydown',function(e){
+    console.log(e.key)
+})
+console.log(element1.textContent[0])
