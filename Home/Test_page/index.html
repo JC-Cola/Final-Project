@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <header>
     <a href="../Home_page/index.html">
@@ -17,18 +19,29 @@
     <div class="logo"></div>
     <p class="title">X Minute Typing Test</p>
     <div class="spacer"></div>
-    <p class="time">XX:XX</p>
+    <div class="time">
+        <h1 id="countdown">15</h1>
+        
+      </div>
+    <!-- <p class="time">XX:XX</p> -->
     <p class="restart">↻</p>
-    
+
 </header>
+
 <body>
     <div class="setting">
         <p class="numbers">Numbers</p>
         <p class="punc">Punctuations</p>
-        <p class="times">Time</p>
-        <p class="words">Words</p>
+        <div class="times">
+            <select class="timer">
+                <option value="15">15 seconds</option>
+                <option value="30">30 seconds</option>
+                <option value="60">1 minute</option>
+            </select>
+        </div>
+
         <!-- <p class="zen">Zen</p> -->
-        
+
     </div>
     <!-- <div class="copy">
          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro corporis perspiciatis, magni fugit deserunt quas. Quasi tempora temporibus illum possimus eius assumenda nesciunt saepe impedit. Odio eligendi dicta accusantium aliquam.
@@ -53,7 +66,7 @@
         <p class="three"></p>
         <p class="four"></p>
         <p class="five"></p>
-        
+
     </div>
     <script src="script.js"></script>
 </body>

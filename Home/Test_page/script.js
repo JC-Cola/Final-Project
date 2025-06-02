@@ -1,9 +1,3 @@
-
-
-
-
-
-
 // Ai generated words
 const words = `ability able about above accept according account across act action activity actually add address administration admit adult affect after again against age agency agent ago agree agreement ahead air all allow almost alone along already also although always American among amount analysis and animal
    another answer any anyone anything appear apply approach area argue arm around arrive art article artist
@@ -67,15 +61,17 @@ const words = `ability able about above accept according account across act acti
    your yourself`.split(/\s+/);
 
 
+const num = document.querySelector('.numbers')
+const punc = document.querySelector('.punc')
+const time = document.querySelector('.times')
 
-
-console.log(words)
 
 
 // 45 charachters per line
 
+let wordCount=0
 
-
+let startTimer=0
 
 // AI generated function to adjust for max width
 function isOverflowing(element) {
@@ -95,31 +91,120 @@ const element4 = document.querySelector(".four")
 let writing4=element4.textContent
 const element5 = document.querySelector(".five")
 let writing5=element5.textContent
+
+let yesnum=false
+let yespunc=false
+let yestime=false
+let puncexample=`:;"/?.,+)(#!`
+
+console.log(words)
 function generate(element,writing){
    //isOverflowing function is AI
-   while (!isOverflowing(element)){
-       place=Math.floor(Math.random() * (words.length-1)) + 1
-       //console.log(words[place])
-       writing+=words[place]
-       a=words[place].length
+   let position=0
+    while (!isOverflowing(element)){
+        
+        place=Math.floor(Math.random() * (words.length-1)) + 1
+        if (yesnum==true && Math.floor(Math.random()*(5)+1)==1 ){
+            
+            writing+=Math.floor(Math.random() * (10 - 1 + 1) + 1).toString()
+            writing+=" "
+        }
+        if (yespunc==true && Math.floor(Math.random()*(5)+1)==1 ){
+            writing=writing.slice(0,writing.length-1)
+            writing+=puncexample[Math.floor(Math.random() * (11 - 1 + 1) + 1).toString()]
+            writing+=" "
+        }
+        position+=1
+    //console.log(words[place])  
+        writing+=words[place]
+        a=words[place].length
       
-       writing+=" "
-       element.textContent=writing
-   }
-   element.textContent=writing.substring(0,writing.length-2-a)
+        writing+=" "
+        element.textContent=writing
+    }
+    element.textContent=writing.substring(0,writing.length-2-a)
 }
 
 
 generate(element1,writing1)
+element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
 console.log(element1)
 generate(element2,writing2)
 generate(element3,writing3)
 generate(element4,writing4)
 generate(element5,writing5)
-let cur=0
-turn=0
-setInterval(function() {
+num.addEventListener("click",function(){
+    element1.innerHTML=""
+    writing1=""
+    element2.innerHTML=""
+    writing2=""
+    element3.innerHTML=""
+    writing3=""
+    element4.innerHTML=""
+    writing4=""
+    element5.innerHTML=""
+    writing5=""
+    if (yesnum==true){
+     yesnum=false
+    }
+    else{
+     yesnum=true
+     //console.log(yesnum)
+     
+    }
+    generate(element1,writing1)
+    generate(element2,writing2)
+    generate(element3,writing3)
+    generate(element4,writing4)
+    generate(element5,writing5)
+    wordCount=0
     writing1=element1.textContent
+    first=``
+    second=writing1
+    element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
+    cur=0
+    start=0
+ })
+
+ punc.addEventListener("click",function(){
+    element1.innerHTML=""
+    writing1=""
+    element2.innerHTML=""
+    writing2=""
+    element3.innerHTML=""
+    writing3=""
+    element4.innerHTML=""
+    writing4=""
+    element5.innerHTML=""
+    writing5=""
+    if (yespunc==true){
+     yespunc=false
+    }
+    else{
+     yespunc=true
+     //console.log(yesnum)
+     
+    }
+    generate(element1,writing1)
+    generate(element2,writing2)
+    generate(element3,writing3)
+    generate(element4,writing4)
+    generate(element5,writing5)
+    writing1=element1.textContent
+    element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
+    first=``
+    second=writing1
+    cur=0
+    start=0
+    wordCount=0
+ })
+
+writing1=element1.textContent
+let first=``
+let second=writing1
+let cur=0
+// setInterval(function() {
+//     writing1=element1.textContent
     //console.log(writing1)
     // if (turn==1){
     //     if (writing1[cur+1]===" "){
@@ -146,41 +231,190 @@ setInterval(function() {
     // }
     // //4fc3f7
   
-   }, 500);
+//    }, 500);
 
 
 
 
-writing1=element1.textContent
 
 
-document.addEventListener('keydown',function(e){
-    if(e.key==" "){
-        e.preventDefault()
-    }
+// document.addEventListener('keydown',function(e){
+//     if(e.key==" "){
+//         e.preventDefault()
+//     }
    
-    if (e.key.length===1){
-        if (e.key.toLowerCase()===writing1[cur].toLowerCase()){
+//     if (e.key.length===1){
+//         if (e.key.toLowerCase()===writing1[cur].toLowerCase()){
+//             if (writing1[cur]==" "){
+//                 console.log("@34q")
+//                 element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:green;">&nbsp</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
+//             }else if(writing1[cur+1]==" "){
+//                 element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:green;">${writing1[cur]}&nbsp</span><span style="color:grey">${writing1.slice(cur+2)}</span>`
+//             }
+//             else{
+//                 element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:green;">${writing1[cur]}</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
+//             }
+//         }
+//         else{
+//             if (writing1[cur]==" "){
+//                 console.log("@34q")
+//                 element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:red;">&nbsp</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
+//             }else if(writing1[cur+1]==" "){
+//                 element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:red;">${writing1[cur]}&nbsp</span><span style="color:grey">${writing1.slice(cur+2)}</span>`
+//             }
+//             else{
+//                 element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:red;">${writing1[cur]}</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
+//             }
+//         }
+//         cur+=1
+//     }
+//  })
+let start=0
+document.addEventListener('keydown',function(e){
+    if (startTimer==0){
+        TimerStart()
+    }
+    if (cur>=writing1.length && start==0 || cur>=writing2.length&&start==1){
+        wordCount+=1
+            //space=true
+        if (start==1){
             
-            if (writing1[cur]==" "){
-                console.log("@34q")
-                element1.innerHTML = `${writing1.slice(0,cur)}<span style="color:green;">&nbsp</span>${writing1.slice(cur+1)}`
-            }
-            else{
-                element1.innerHTML = `${writing1.slice(0,cur)}<span style="color:green;">${writing1[cur]}</span>${writing1.slice(cur+1)}`
-            }
-        
+            e.preventDefault()
+            element1.innerHTML=element2.innerHTML
+            element2.innerHTML=`${element3.innerHTML}`
+            element3.innerHTML=element4.innerHTML
+            element4.innerHTML=element5.innerHTML
+            element5.innerHTML=""
+            //caretEl=element1.querySelector("cust")
+            element1.querySelector(".custom-caret").style.display="none"
+            writing5=""
+            generate(element5,writing5)
+            cur=0
+            first=``
+            
+            // writing1=element1.innerHTML
+            // second=writing1
+            writing2=element2.innerHTML
+            element2.innerHTML=`<span class="custom-caret"></span>${element2.innerHTML}`
+
+            second=writing2
+           
+                
+            //console.log("end of string")
         }
         else{
-            if (writing1[cur]===" "){
-                element1.innerHTML = `${writing1.slice(0,cur)}<span style="color:red">${`&nsbp`}</span>${writing1.slice(cur+1)}`;
+            e.preventDefault()
+            cur=0
+            first=``
+            element1.querySelector(".custom-caret").style.display="none"
+
+            writing2=element2.innerHTML
+            element2.innerHTML=`<span class="custom-caret"></span>${element2.innerHTML}`
+
+            second=writing2
+            start=1
+        }
+    
+        
+
+        
+    }
+    else{
+        if(e.key==" "){
+            e.preventDefault()
+            wordCount+=1
+        }
+        if (start==0){
+
+            typing(writing1,element1,e)
+        }
+        else{
+            typing(writing2,element2,e)
+        }
+
+        
+        
+    }
+})
+
+
+function typing(writing1,element1,e){
+    if (e.key.length===1){
+        if (e.key.toLowerCase()===writing1[cur].toLowerCase()){
+            if (writing1[cur]==" "){
+                first+=`<span style="color:#ffffff;">&nbsp</span>`
+                //console.log("########")'
+                
+                //element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:green;">&nbsp</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
             }
+            // else if(writing1[cur+1]==" "){
+                
+            //     first+=`<span style="color:#ffffff;">${writing1[cur]}</span>`
+            // }
             else{
-                element1.innerHTML = `${writing1.slice(0,cur)}<span style="color:red">${writing1[cur]}</span>${writing1.slice(cur+1)}`;
+                first+=`<span style="color:#ffffff;">${writing1[cur]}</span>`
+                //element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:green;">${writing1[cur]}</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
+            }
+        }
+        else{
+            if (writing1[cur]==" "){
+                //console.log("######")
+                first+=`<span style="color:red;">&nbsp</span>`
+                //element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:red;">&nbsp</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
+            }
+            // else if(writing1[cur+1]==" "){
+                
+            //     first+=`<span style="color:red;">${writing1[cur]}&nbsp</span>`
+            // }
+            else{
+                first+=`<span style="color:red;">${writing1[cur]}</span>`
+                //element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:red;">${writing1[cur]}</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
             }
         }
         
+        second=second.slice(1)
+        if(second[0]==" "){
+            element1.innerHTML=`${first}<span class="custom-caret"></span>&nbsp${second.slice(1)}`
+        }
+        else{
+            element1.innerHTML=`${first}<span class="custom-caret"></span>${second}`
+        }
+        //console.log(first,cur,second,writing1)
+        //element1.innerHTML=`${first}${second}`
         cur+=1
     }
- })
- 
+
+    
+    if (wordCount%2==0){
+        console.log(wordCount)
+    }
+    
+}    
+
+
+
+// timer
+let timeLeft = 15;
+const countdownElement = document.getElementById('countdown');
+let timer = null;
+
+function TimerStart(){
+    // ai timer
+  // Prevent multiple timers
+  if (timer !== null) return;
+
+
+  timer = setInterval(() => {
+    timeLeft--;
+    countdownElement.textContent = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      //window.location.href = '../../../Home/Score_page/index.html';
+      localStorage.setItem('words',`JSON.stringify${wordCount}`)
+
+      console.log('done',wordCount)
+    }
+  }, 1000);
+  console.log(window.location.href,localStorage.getItem('words'))
+}
+
