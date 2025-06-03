@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .write {
     background-color: #2c2c2e;
     width: 60%;
@@ -17,10 +19,12 @@
 }
 
 .write p {
-
     justify-content: center;
     display: flex;
     font-size: 30px;
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0px;
 }
 
 body {
@@ -152,17 +156,14 @@ header {
     color: gray;
 }
 
-.timer:hover {
-    color: gray;
-}
-
 .numbers:hover {
     color: gray;
 }
+
 /* AI caret */
 .custom-caret {
     /* margin-left: 50px; */
-    border-left: 2px solid rgb(240, 236, 0);
+    border-left: 3.5px solid #2979ff;
     display: inline-block;
     height: 1.2em; /* Adjust height as needed */
     animation: blink-caret 1s steps(1) infinite;
@@ -173,4 +174,6 @@ header {
     }
   }
 
-  
+.selected {
+    color: gray;
+}

@@ -65,8 +65,14 @@ const num = document.querySelector('.numbers')
 const punc = document.querySelector('.punc')
 const time = document.querySelector('.times')
 
+let title=document.querySelector('.title')
+let timelength=localStorage.getItem('length')
+title.innerHTML=`${timelength} Second Typing Test`
 
+let countdown=document.getElementById("countdown")
+countdown.innerHTML=`${timelength}`
 
+console.log(countdown,"234")
 // 45 charachters per line
 
 let wordCount=0
@@ -394,7 +400,7 @@ function typing(writing1,element1,e){
 
 
 // timer
-let timeLeft = 15;
+let timeLeft = timelength;
 const countdownElement = document.getElementById('countdown');
 let timer = null;
 
@@ -408,13 +414,43 @@ function TimerStart(){
     timeLeft--;
     countdownElement.textContent = timeLeft;
     if (timeLeft <= 0) {
-      clearInterval(timer);
-      //window.location.href = '../../../Home/Score_page/index.html';
-      localStorage.setItem('words',`JSON.stringify${wordCount}`)
+        clearInterval(timer);
+        //window.location.href = '../../../Home/Score_page/index.html';
+        //ai json.parse,stringify
+        let storedWords = JSON.parse(localStorage.getItem('words') || '[]');
+        storedWords.push(wordCount);
+        localStorage.setItem('words', JSON.stringify(storedWords));
 
-      console.log('done',wordCount)
+
+      
+
+        console.log('done',wordCount)
     }
   }, 1000);
   console.log(window.location.href,localStorage.getItem('words'))
 }
 
+console.log(localStorage.getItem('length'))
+
+// Selected
+const numbersBtn = document.querySelector('.numbers');
+const puncBtn = document.querySelector('.punc');
+
+numbersBtn.addEventListener('click', function () {
+    this.classList.toggle('selected');
+});
+
+puncBtn.addEventListener('click', function () {
+    this.classList.toggle('selected');
+});
+
+
+const select=document.querySelector('.timer')
+select.addEventListener('change', function () {
+    const selected = select.value;
+    timeLeft=selected
+    title.innerHTML=`${selected} Second Typing Test`
+
+    countdown.innerHTML=selected
+    
+  });
