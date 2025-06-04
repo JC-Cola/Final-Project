@@ -66,11 +66,11 @@ const punc = document.querySelector('.punc')
 const time = document.querySelector('.times')
 
 let title=document.querySelector('.title')
-let timelength=localStorage.getItem('length')
-title.innerHTML=`${timelength} Second Typing Test`
+let selected=localStorage.getItem('length')
+title.innerHTML=`${selected} Second Typing Test`
 
-let countdown=document.getElementById("countdown")
-countdown.innerHTML=`${timelength}`
+let countdownElement=document.getElementById("countdown")
+countdownElement.innerHTML=`${selected}`
 
 console.log(countdown,"234")
 // 45 charachters per line
@@ -78,6 +78,18 @@ console.log(countdown,"234")
 let wordCount=0
 
 let startTimer=0
+
+// let timeLeft = timelength;
+// const countdownElement = document.getElementById('countdown');
+// // const select=document.querySelector('.timer')
+// select.addEventListener('change', function () {
+//     const selected = select.value;
+//     timeLeft=selected
+//     title.innerHTML=`${selected} Second Typing Test`
+
+//     countdown.innerHTML=selected
+    
+//   });
 
 // AI generated function to adjust for max width
 function isOverflowing(element) {
@@ -101,30 +113,42 @@ let writing5=element5.textContent
 let yesnum=false
 let yespunc=false
 let yestime=false
-let puncexample=`:;"/?.,+)(#!`
+let puncexample=`.,;!:?`
 
 console.log(words)
+let numpunc=0
+let cap=true
 function generate(element,writing){
    //isOverflowing function is AI
    let position=0
+   
     while (!isOverflowing(element)){
         
         place=Math.floor(Math.random() * (words.length-1)) + 1
-        if (yesnum==true && Math.floor(Math.random()*(5)+1)==1 ){
+        if (yesnum==true && Math.floor(Math.random()*(5)+1)==1 && position!=0){
             
             writing+=Math.floor(Math.random() * (10 - 1 + 1) + 1).toString()
             writing+=" "
         }
-        if (yespunc==true && Math.floor(Math.random()*(5)+1)==1 ){
+        numpunc+=1
+        if (yespunc==true && Math.floor(Math.random()*(2)+1)==1 && numpunc>=5 && position!=0){
+            cap=true
+            numpunc=0
             writing=writing.slice(0,writing.length-1)
-            writing+=puncexample[Math.floor(Math.random() * (11 - 1 + 1) + 1).toString()]
+            writing+=puncexample[Math.floor(Math.random() * (puncexample.length - 1 ) + 1).toString()]
             writing+=" "
         }
         position+=1
     //console.log(words[place])  
-        writing+=words[place]
+        if (cap){
+            cap=false
+            writing+=words[place][0].toUpperCase()+words[place].slice(1)
+        }
+        else{
+            writing+=words[place]
+        }
         a=words[place].length
-      
+        
         writing+=" "
         element.textContent=writing
     }
@@ -164,8 +188,14 @@ num.addEventListener("click",function(){
     generate(element4,writing4)
     generate(element5,writing5)
     wordCount=0
+   
+    title.innerHTML=`${selected} Second Typing Test`
+
+    countdown.innerHTML=selected
     writing1=element1.textContent
     first=``
+    numpunc=0
+    cap=true
     second=writing1
     element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
     cur=0
@@ -197,12 +227,18 @@ num.addEventListener("click",function(){
     generate(element4,writing4)
     generate(element5,writing5)
     writing1=element1.textContent
+    
+    title.innerHTML=`${selected} Second Typing Test`
+
+    countdown.innerHTML=selected
     element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
     first=``
     second=writing1
     cur=0
     start=0
     wordCount=0
+    numpunc=0
+    cap=true
  })
 
 writing1=element1.textContent
@@ -346,7 +382,7 @@ document.addEventListener('keydown',function(e){
 
 function typing(writing1,element1,e){
     if (e.key.length===1){
-        if (e.key.toLowerCase()===writing1[cur].toLowerCase()){
+        if (e.key===writing1[cur]){
             if (writing1[cur]==" "){
                 first+=`<span style="color:#ffffff;">&nbsp</span>`
                 //console.log("########")'
@@ -400,8 +436,7 @@ function typing(writing1,element1,e){
 
 
 // timer
-let timeLeft = timelength;
-const countdownElement = document.getElementById('countdown');
+
 let timer = null;
 
 function TimerStart(){
@@ -411,15 +446,16 @@ function TimerStart(){
 
 
   timer = setInterval(() => {
-    timeLeft--;
-    countdownElement.textContent = timeLeft;
-    if (timeLeft <= 0) {
+    selected--;
+    countdownElement.textContent = selected;
+    if (selected <= 0) {
         clearInterval(timer);
-        //window.location.href = '../../../Home/Score_page/index.html';
+        window.location.href = '../../../Home/Score_page/index.html';
         //ai json.parse,stringify
         let storedWords = JSON.parse(localStorage.getItem('words') || '[]');
         storedWords.push(wordCount);
         localStorage.setItem('words', JSON.stringify(storedWords));
+        
 
 
       
@@ -448,7 +484,7 @@ puncBtn.addEventListener('click', function () {
 const select=document.querySelector('.timer')
 select.addEventListener('change', function () {
     const selected = select.value;
-    timeLeft=selected
+    
     title.innerHTML=`${selected} Second Typing Test`
 
     countdown.innerHTML=selected
