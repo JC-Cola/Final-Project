@@ -65,6 +65,7 @@ const num = document.querySelector('.numbers')
 const punc = document.querySelector('.punc')
 const time = document.querySelector('.times')
 
+
 let title=document.querySelector('.title')
 let selected=localStorage.getItem('length')
 title.innerHTML=`${selected} Second Typing Test`
@@ -189,17 +190,23 @@ num.addEventListener("click",function(){
     generate(element5,writing5)
     wordCount=0
    
-    title.innerHTML=`${selected} Second Typing Test`
 
     countdown.innerHTML=selected
+    
     writing1=element1.textContent
     first=``
     numpunc=0
     cap=true
     second=writing1
     element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
+
+    selected=title.innerHTML.split(" ")[0] 
     cur=0
     start=0
+    clearInterval(timer)
+    countdownElement.textContent = selected;
+    timer=null
+    let mistakes=0 
  })
 
  punc.addEventListener("click",function(){
@@ -228,9 +235,9 @@ num.addEventListener("click",function(){
     generate(element5,writing5)
     writing1=element1.textContent
     
-    title.innerHTML=`${selected} Second Typing Test`
+    
 
-    countdown.innerHTML=selected
+    
     element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
     first=``
     second=writing1
@@ -238,7 +245,15 @@ num.addEventListener("click",function(){
     start=0
     wordCount=0
     numpunc=0
+    
+    selected=title.innerHTML.split(" ")[0] 
+    countdownElement.textContent = selected
+
+    clearInterval(timer)
+    
+    timer=null
     cap=true
+    let mistakes=0
  })
 
 writing1=element1.textContent
@@ -379,7 +394,7 @@ document.addEventListener('keydown',function(e){
     }
 })
 
-
+let mistakes=0
 function typing(writing1,element1,e){
     if (e.key.length===1){
         if (e.key===writing1[cur]){
@@ -399,9 +414,11 @@ function typing(writing1,element1,e){
             }
         }
         else{
+            mistakes+=1
             if (writing1[cur]==" "){
                 //console.log("######")
-                first+=`<span style="color:red;">&nbsp</span>`
+
+                first+=`<span style="color:red;line-height:0; border-bottom: 5px solid red;margin-bottom:0; ">&nbsp</span>`
                 //element1.innerHTML = `<span style="color:#ffffff;">${writing1.slice(0,cur)}</span><span style="color:red;">&nbsp</span><span style="color:grey">${writing1.slice(cur+1)}</span>`
             }
             // else if(writing1[cur+1]==" "){
@@ -455,7 +472,9 @@ function TimerStart(){
         let storedWords = JSON.parse(localStorage.getItem('words') || '[]');
         storedWords.push(wordCount);
         localStorage.setItem('words', JSON.stringify(storedWords));
-        
+        let wrong = JSON.parse(localStorage.getItem('wrong') || '[]');
+        wrong.push(mistakes);
+        localStorage.setItem('wrong', JSON.stringify(wrong));
 
 
       
@@ -483,9 +502,12 @@ puncBtn.addEventListener('click', function () {
 
 const select=document.querySelector('.timer')
 select.addEventListener('change', function () {
-    const selected = select.value;
+    selected = select.value;
     
     title.innerHTML=`${selected} Second Typing Test`
+    clearInterval(timer)
+    
+    timer=null
 
     countdown.innerHTML=selected
     
