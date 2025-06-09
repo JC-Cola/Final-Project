@@ -71,7 +71,7 @@ let selected=localStorage.getItem('length')
 title.innerHTML=`${selected} Second Typing Test`
 
 let countdownElement=document.getElementById("countdown")
-countdownElement.innerHTML=`${selected}`
+countdownElement.innerHTML=`00:${selected}`
 
 console.log(countdown,"234")
 // 45 charachters per line
@@ -204,8 +204,9 @@ num.addEventListener("click",function(){
     cur=0
     start=0
     clearInterval(timer)
-    countdownElement.textContent = selected;
+    countdownElement.textContent = `00:${selected}`;
     timer=null
+    let totalChar=0
     let mistakes=0 
  })
 
@@ -247,12 +248,13 @@ num.addEventListener("click",function(){
     numpunc=0
     
     selected=title.innerHTML.split(" ")[0] 
-    countdownElement.textContent = selected
+    countdownElement.textContent = `00:${selected}`;
 
     clearInterval(timer)
     
     timer=null
     cap=true
+    let totalChar=0
     let mistakes=0
  })
 
@@ -395,7 +397,9 @@ document.addEventListener('keydown',function(e){
 })
 
 let mistakes=0
+let totalChar=0
 function typing(writing1,element1,e){
+    totalChar+=1
     if (e.key.length===1){
         if (e.key===writing1[cur]){
             if (writing1[cur]==" "){
@@ -464,17 +468,27 @@ function TimerStart(){
 
   timer = setInterval(() => {
     selected--;
-    countdownElement.textContent = selected;
+    if (selected>=10){
+        countdownElement.textContent = `00:${selected}`;
+    }
+    else{
+        countdownElement.textContent=`00:0${selected}`
+    }
     if (selected <= 0) {
         clearInterval(timer);
         window.location.href = '../../../Home/Score_page/index.html';
         //ai json.parse,stringify
-        let storedWords = JSON.parse(localStorage.getItem('words') || '[]');
-        storedWords.push(wordCount);
-        localStorage.setItem('words', JSON.stringify(storedWords));
-        let wrong = JSON.parse(localStorage.getItem('wrong') || '[]');
-        wrong.push(mistakes);
+        let storedWords = JSON.parse(localStorage.getItem('words') || '[]')
+        storedWords.push(wordCount)
+        localStorage.setItem('words', JSON.stringify(storedWords))
+        let wrong = JSON.parse(localStorage.getItem('wrong') || '[]')
+        wrong.push(mistakes)
+        
         localStorage.setItem('wrong', JSON.stringify(wrong));
+        let written=JSON.parse(localStorage.getItem('totalChar')||'[]')
+        written.push(totalChar)
+        localStorage.setItem('totalChar', JSON.stringify(written))
+
 
 
       
@@ -510,5 +524,6 @@ select.addEventListener('change', function () {
     timer=null
 
     countdown.innerHTML=selected
+    countdownElement.textContent = `00:${selected}`
     
   });

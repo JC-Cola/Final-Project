@@ -70,7 +70,7 @@ header {
     margin-top: 50px;
     font-size: 40px;
 }
-
+/* 
 #clear {
     margin-top: 100px;
     position: relative;
@@ -91,6 +91,31 @@ header {
 }
 
 #clear:hover {
+    background-color: #3a9bbf;
+    cursor: pointer;
+} */
+
+
+.back {
+    margin-top: 100px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4fc3f7;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(79, 195, 247, 0.4);
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    letter-spacing: 1px;
+
+}
+
+.back:hover {
     background-color: #3a9bbf;
     cursor: pointer;
 }
