@@ -525,5 +525,45 @@ select.addEventListener('change', function () {
 
     countdown.innerHTML=selected
     countdownElement.textContent = `00:${selected}`
+
+
+
+    element1.innerHTML=""
+    writing1=""
+    element2.innerHTML=""
+    writing2=""
+    element3.innerHTML=""
+    writing3=""
+    element4.innerHTML=""
+    writing4=""
+    element5.innerHTML=""
+    writing5=""
+
+    generate(element1,writing1)
+    generate(element2,writing2)
+    generate(element3,writing3)
+    generate(element4,writing4)
+    generate(element5,writing5)
+    wordCount=0
+   
+
+    countdown.innerHTML=selected
+    
+    writing1=element1.textContent
+    first=``
+    numpunc=0
+    cap=true
+    second=writing1
+    element1.innerHTML=`<span class="custom-caret"></span>${element1.innerHTML}`
+
+    selected=title.innerHTML.split(" ")[0] 
+    cur=0
+    start=0
+    clearInterval(timer)
+    countdownElement.textContent = `00:${selected}`;
+    timer=null
+    let totalChar=0
+    let mistakes=0 
+
     
   });
