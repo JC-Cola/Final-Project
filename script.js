@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!timeSelect.value) {
       alert("Please select a time before starting the test.");
     } else {
-      window.location.href = "../test.js";
+      window.location.href = "../test.html";
     }
   });
 });
