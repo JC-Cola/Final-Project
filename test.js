@@ -476,7 +476,7 @@ function TimerStart(){
     }
     if (selected <= 0) {
         clearInterval(timer);
-        window.location.href = '../score.html';
+        window.location.href = '../Final-Project/score.html';
         //ai json.parse,stringify
         let storedWords = JSON.parse(localStorage.getItem('words') || '[]')
         storedWords.push(wordCount)
