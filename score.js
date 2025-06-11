@@ -46,5 +46,5 @@ console.log(localStorage.getItem('wrong'))
 const button = document.querySelector('.back');
 
 button.addEventListener('click', function () {
-  window.location.href = '../Final-Project/test.html';
+  window.location.href = 'test.html';
 })
